@@ -25,7 +25,7 @@ func (p *Polygon) Next(i int) Point {
 	return p.v[(i+1)%len(p.v)]
 }
 
-func (p *Polygon) Size() {
+func (p *Polygon) Size() int {
 	return len(p.v)
 }
 
@@ -37,10 +37,10 @@ func (pol *Polygon) Contains(p Point) int {
 		if b.y < a.y {
 			a, b = b, a
 		}
-		if a.y <= 0 && 0 < b.y && a.Cross(b) < 0 {
+		if a.y <= 0 && 0 < b.y && Cross(a, b) < 0 {
 			in = !in
 		}
-		if a.Cross(b) == 0 && a.Dot(b) <= 0 {
+		if Cross(a, b) == 0 && Dot(a, b) <= 0 {
 			return 2
 		}
 	}
